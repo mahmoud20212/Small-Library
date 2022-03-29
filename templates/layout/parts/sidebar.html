@@ -1,0 +1,95 @@
+<!-- Main Sidebar Container -->
+<aside style="position: fixed;" class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="{% url 'index' %}" class="brand-link">
+    <span class="brand-text font-weight-light">NOUVIL</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+      </div>
+      <div class="info">
+        <a href="{% url 'index' %}" class="d-block">Library</a>
+      </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+        <li class="nav-item">
+          <a href="{% url 'books' %}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Books
+            </p>
+          </a>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-copy"></i>
+            <p>
+              Category
+              <i class="fas fa-angle-left right"></i>
+
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+
+            <li class="nav-item">
+              <a id="addcat" href="#" class="nav-link">
+                <i class="fa fa-plus "></i>
+                <p class="text-light"> Add New </p>
+              </a>
+            </li>
+            <form id="cat" method="POST">
+              {% csrf_token %}
+              <div id="catinput">
+                {{formcat.name}}
+                <div style="margin: 5px 0;"></div>
+                <button id="backcat" class="btn btn-primary ">cancel</button>
+                <button type="submit" class="btn btn-success">save</button>
+              </div>
+            </form>
+            <div style="margin: 5px 0;"></div>
+            {% for item in category %}
+            <li style="cursor: pointer;" class="nav-item cat{{item.id}}">
+              <a id="" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>{{item.name}}</p>
+              </a>
+            </li>
+            {% endfor %}
+
+          </ul>
+        </li>
+
+        <li class="nav-header">الحالة</li>
+
+        <li style="cursor: pointer;" class="nav-item status-sold">
+          <a id="statusSold" class="nav-link">
+            <i class="nav-icon far fa-circle text-danger"></i>
+            <p class="text">تم بيعه</p>
+          </a>
+        </li>
+        <li style="cursor: pointer;" class="nav-item status-rental">
+          <a id="" class="nav-link">
+            <i class="nav-icon far fa-circle text-warning"></i>
+            <p>تم استعارته</p>
+          </a>
+        </li>
+        <li style="cursor: pointer;" class="nav-item status-availble">
+          <a id="" class="nav-link">
+            <i class="nav-icon far fa-circle text-info"></i>
+            <p>متاح</p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
